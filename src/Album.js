@@ -16,19 +16,6 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright() {
-	return (
-		<Typography variant="body2" color="text.secondary" align="center">
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
-
 const cards = [1, 2, 3];
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -38,21 +25,12 @@ export default function Album() {
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<CssBaseline />
-			<AppBar position="relative">
-				<Toolbar>
-					<CameraIcon sx={{ mr: 2 }} />
-					<Typography variant="h6" color="inherit" noWrap>
-						Album layout
-					</Typography>
-				</Toolbar>
-			</AppBar>
 			<main>
 				{/* Hero unit */}
 				<Box
 					sx={{
 						bgcolor: "background.paper",
 						pt: 8,
-						pb: 6,
 					}}
 				>
 					<Container maxWidth="sm">
@@ -63,17 +41,39 @@ export default function Album() {
 							color="text.primary"
 							gutterBottom
 						>
-							Album layout
+							JavaScript Testing Tutorial
 						</Typography>
 						<Typography
-							variant="h5"
+							variant="h6"
 							align="center"
 							color="text.secondary"
 							paragraph
 						>
-							Something short and leading about the collection below—its
-							contents, the creator, etc. Make it short and sweet, but not too
-							short so folks don&apos;t simply skip over it entirely.
+							Did you know that among 1.8 billion websites in the world, 98% of
+							them use JavaScript? JavaScript is a powerful scripting language
+							use in many applications in the world of tech. This is why having
+							an arsenal of testing tools becomes crucial to build high quality
+							and reliable apps and products!
+						</Typography>
+					</Container>
+				</Box>
+				<Box
+					sx={{
+						bgcolor: "background.paper",
+						pt: 3,
+						pb: 6,
+					}}
+				>
+					<Container maxWidth="sm">
+						<Typography
+							component="h3"
+							variant="h4"
+							align="center"
+							color="text.primary"
+							gutterBottom
+						>
+							Discover different tools. Test this website. Learn the
+							differences.
 						</Typography>
 						<Stack
 							sx={{ pt: 4 }}
@@ -81,8 +81,8 @@ export default function Album() {
 							spacing={2}
 							justifyContent="center"
 						>
-							<Button variant="contained">Main call to action</Button>
-							<Button variant="outlined">Secondary action</Button>
+							<Button variant="contained">Project Details</Button>
+							<Button variant="outlined">Prerequisite Set-Up</Button>
 						</Stack>
 					</Container>
 				</Box>
@@ -125,22 +125,6 @@ export default function Album() {
 					</Grid>
 				</Container>
 			</main>
-			{/* Footer */}
-			<Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-				<Typography variant="h6" align="center" gutterBottom>
-					Footer
-				</Typography>
-				<Typography
-					variant="subtitle1"
-					align="center"
-					color="text.secondary"
-					component="p"
-				>
-					Something here to give the footer a purpose!
-				</Typography>
-				<Copyright />
-			</Box>
-			{/* End footer */}
 		</ThemeProvider>
 	);
 }
