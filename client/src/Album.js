@@ -1,7 +1,6 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
+import { useState } from "react";
 import Button from "@mui/material/Button";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,10 +12,13 @@ import Box from "@mui/material/Box";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
+//	import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Tool1 from "./Tool1";
+import Tool2 from "./Tool2";
+import Tool3 from "./Tool3";
 
-const cards = [1, 2, 3];
+const cards = ["tool 1", "tool 2", "tool 3"];
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -79,7 +81,43 @@ function ProjectDetailsUnit() {
 	);
 }
 
+function SetUpDetailsUnit() {
+	return (
+		<Box
+			sx={{
+				bgcolor: "background.paper",
+				pt: 3,
+				pb: 6,
+			}}
+		>
+			<Container maxWidth="sm">
+				<Typography
+					component="p"
+					variant="h7"
+					align="center"
+					color="text.primary"
+					gutterBottom
+				>
+					1. Install Node.js
+					<br />
+					<br />
+					2. Install React.js
+					<br />
+					<br />
+					3. commit sepuku because you have commited war crimes so you must
+					attone for your sins and protect your honour.
+					<br />
+					<br />
+					4. Run `npm install`
+				</Typography>
+			</Container>
+		</Box>
+	);
+}
+
 function StartUnit() {
+	const [startMessage, setStartMessage] = useState("project");
+
 	return (
 		<Box
 			sx={{
@@ -95,11 +133,19 @@ function StartUnit() {
 					spacing={2}
 					justifyContent="center"
 				>
-					<Button variant="contained">Project Details</Button>
-					<Button variant="outlined">Prerequisite Set-Up</Button>
+					<Button
+						variant="contained"
+						onClick={() => setStartMessage("project")}
+					>
+						Project Details
+					</Button>
+					<Button variant="outlined" onClick={() => setStartMessage("set-up")}>
+						Prerequisite Set-Up
+					</Button>
 				</Stack>
 				<Container>
-					<ProjectDetailsUnit />
+					{startMessage === "project" && <ProjectDetailsUnit />}
+					{startMessage === "set-up" && <SetUpDetailsUnit />}
 				</Container>
 			</Container>
 		</Box>
@@ -151,7 +197,49 @@ function HeroUnit() {
 	);
 }
 
+function ToolCards({ setTool }) {
+	return (
+		<Container sx={{ py: 8 }} maxWidth="md">
+			{/* End hero unit */}
+			<Grid container spacing={4}>
+				{cards.map((card) => (
+					<Grid item key={card} xs={12} sm={6} md={4}>
+						<Card
+							sx={{
+								height: "100%",
+								display: "flex",
+								flexDirection: "column",
+							}}
+							onClick={() => setTool(card)}
+						>
+							<CardMedia
+								component="div"
+								sx={{
+									// 16:9
+									pt: "56.25%",
+								}}
+								image="https://source.unsplash.com/random?wallpapers"
+							/>
+							<CardContent sx={{ flexGrow: 1 }}>
+								<Typography gutterBottom variant="h5" component="h2">
+									{`${card}`}
+								</Typography>
+								<Typography>Brief description of testing tool.</Typography>
+							</CardContent>
+							<CardActions>
+								<Button size="small">View</Button>
+							</CardActions>
+						</Card>
+					</Grid>
+				))}
+			</Grid>
+		</Container>
+	);
+}
+
 export default function Album() {
+	const [tool, setTool] = useState("");
+
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<CssBaseline />
@@ -159,44 +247,10 @@ export default function Album() {
 				{/* Hero unit */}
 				<HeroUnit />
 				<StartUnit />
-				<Container sx={{ py: 8 }} maxWidth="md">
-					{/* End hero unit */}
-					<Grid container spacing={4}>
-						{cards.map((card) => (
-							<Grid item key={card} xs={12} sm={6} md={4}>
-								<Card
-									sx={{
-										height: "100%",
-										display: "flex",
-										flexDirection: "column",
-									}}
-								>
-									<CardMedia
-										component="div"
-										sx={{
-											// 16:9
-											pt: "56.25%",
-										}}
-										image="https://source.unsplash.com/random?wallpapers"
-									/>
-									<CardContent sx={{ flexGrow: 1 }}>
-										<Typography gutterBottom variant="h5" component="h2">
-											{`Testing Tool #${card}`}
-										</Typography>
-										<Typography>
-											This is a media card. You can use this section to describe
-											the content.
-										</Typography>
-									</CardContent>
-									<CardActions>
-										<Button size="small">View</Button>
-										<Button size="small">Edit</Button>
-									</CardActions>
-								</Card>
-							</Grid>
-						))}
-					</Grid>
-				</Container>
+				<ToolCards setTool={setTool} />
+				{tool === cards[0] && <Tool1 />}
+				{tool === cards[1] && <Tool2 />}
+				{tool === cards[2] && <Tool3 />}
 			</main>
 		</ThemeProvider>
 	);
