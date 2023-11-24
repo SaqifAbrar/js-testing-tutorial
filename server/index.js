@@ -1,5 +1,6 @@
 const express = require("express");
 const validateLogin = require("./validateLoginRequest");
+const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 
@@ -15,35 +16,61 @@ const users = [
 	},
 ];
 
+const db = new sqlite3.Database(
+	"./model/mock_data.db",
+	sqlite3.OPEN_READWRITE,
+	(err) => {
+		if (err) return console.error(err.message);
+
+		console.log("Data base connection successful...");
+	},
+);
+
 app.use(express.static("build"));
 
 app.use(express.json());
 
-function searchUser(email) {
-	return users.find((user) => user.email === email).id;
+async function searchUser(email) {
+	if (email === "") return -1;
+
+	const search_query = `SELECT id FROM mock_data WHERE email = '${email}'`;
+	console.log(search_query);
+
+	return new Promise((resolve) =>
+		db.all(search_query, [], (err, rows) => {
+			if (err) resolve(err.message);
+			// console.log(`+++++ ${rows[0].id}`);
+			resolve(rows[0].id);
+		}),
+	);
 }
 
-function validatePassword(id, password) {
-	return users.find((user) => user.id === id).password === password;
+async function validatePassword(id, request_password) {
+	if (id === "" || request_password === "") return -1;
+
+	const search_query = `SELECT password FROM mock_data WHERE id = ${id}`;
+	console.log(search_query);
+
+	return new Promise((resolve) =>
+		db.all(search_query, [], (err, rows) => {
+			if (err) resolve(err.message);
+
+			const user_password = rows[0].password;
+			resolve(user_password == request_password);
+		}),
+	);
 }
 
-app.post("/auth/login", (req, res) => {
+app.post("/auth/login", async (req, res) => {
 	const username = req.body.email;
 	const password = req.body.password;
 
-	loginObject = validateLogin(username, password);
+	const loginObject = validateLogin(username, password);
 
-	if ("error" in loginObject) {
-		res.send(loginObject.error);
-	} else {
-		const user = searchUser(username);
+	const userId = await searchUser("cpeniman0@over-blog.com");
+	const validate = await validatePassword(userId, "zU66JSk76IP4ZAe5");
 
-		if (user == undefined) {
-			res.send(loginObject.error);
-		} else {
-			res.send(validatePassword(user, password));
-		}
-	}
+	res.send(validate);
 });
 
 app.get("/api", (req, res) => {
@@ -55,7 +82,7 @@ app.get("/api", (req, res) => {
 	res.send(welcome);
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}...`));
 
 /*
 const express = require("express");
