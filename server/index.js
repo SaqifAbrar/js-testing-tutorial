@@ -1,4 +1,62 @@
 const express = require("express");
+const validateLogin = require("./validateLoginRequest");
+
+const app = express();
+
+const PORT = process.env.PORT || 8080;
+
+const users = [
+	{
+		id: 1,
+		first_name: "John",
+		last_name: "Smith",
+		email: "jsmith@example.com",
+		password: "TestingIsFun123",
+	},
+];
+
+app.use(express.json());
+
+function searchUser(email) {
+	return users.find((user) => user.email === email).id;
+}
+
+function validatePassword(id, password) {
+	return users.find((user) => user.id === id).password === password;
+}
+
+app.post("/auth/login", (req, res) => {
+	const username = req.body.email;
+	const password = req.body.password;
+
+	loginObject = validateLogin(username, password);
+
+	if ("error" in loginObject) {
+		res.send(loginObject.error);
+	} else {
+		const user = searchUser(username);
+
+		if (user == undefined) {
+			res.send(loginObject.error);
+		} else {
+			res.send(validatePassword(user, password));
+		}
+	}
+});
+
+app.get("/api", (req, res) => {
+	const welcome = {
+		message: "Welcome to the JavaScript testing tutorial!",
+		github: "https://github.com/SaqifAbrar/js-testing-tutorial",
+		authors: ["Saqif Abrar"],
+	};
+	res.send(welcome);
+});
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+/*
+const express = require("express");
 const passport = require("passport");
 const flash = require("express-flash");
 const initializePassport = require("./passport-config");
@@ -63,3 +121,4 @@ app.get("/api", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+*/
