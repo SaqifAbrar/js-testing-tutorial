@@ -1,0 +1,41 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "Simple server model for JavaScript Testing Tutorial/Module to deliver UI to client and store basic information in an SQLite database",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SaqifAbrar/js-testing-tutorial.git"
+	},
+	"keywords": [
+		"javascript",
+		"testing",
+		"tutorial",
+		"module",
+		"react.js",
+		"node.js",
+		"express.js",
+		"jest",
+		"selenium"
+	],
+	"author": [
+		"Saqif Abrar"
+	],
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/SaqifAbrar/js-testing-tutorial/issues"
+	},
+	"homepage": "https://github.com/SaqifAbrar/js-testing-tutorial#readme",
+	"dependencies": {
+		"bcrypt": "^5.1.1",
+		"express": "^4.18.2",
+		"express-flash": "^0.0.2",
+		"express-session": "^1.17.3",
+		"passport": "^0.6.0",
+		"passport-local": "^1.0.0"
+	}
+}
