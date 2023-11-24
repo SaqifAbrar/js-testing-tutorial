@@ -15,6 +15,8 @@ const users = [
 	},
 ];
 
+app.use(express.static("build"));
+
 app.use(express.json());
 
 function searchUser(email) {
