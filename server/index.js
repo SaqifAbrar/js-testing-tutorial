@@ -64,6 +64,7 @@ app.post("/auth/login", async (req, res) => {
 		validation: validate,
 		sent: { username: username, password: password },
 	};
+
 	res.send(response);
 });
 

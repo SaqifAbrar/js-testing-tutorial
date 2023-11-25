@@ -29,7 +29,7 @@ export default function SignIn() {
 			},
 			method: "POST",
 			body: JSON.stringify({
-				username: data.get("email"),
+				email: data.get("email"),
 				password: data.get("password"),
 			}),
 		});
