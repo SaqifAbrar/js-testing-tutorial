@@ -23,7 +23,12 @@ const loginSchema = Joi.object({
 });
 
 function validateLogin(username, password) {
-	return loginSchema.validate({ email: username, password: password });
+	const validation = loginSchema.validate({
+		email: username,
+		password: password,
+	});
+
+	return validation.hasOwnProperty("error");
 }
 
 module.exports = validateLogin;

@@ -10,12 +10,4 @@ const db = new sqlite3.Database(
 	},
 );
 
-/*const sql = `SELECT * FROM patients`;
-
-db.all(sql, [], (err, rows) => {
-	if (err) return console.error(err.message);
-
-	console.log(rows);
-});*/
-
 module.exports = db;

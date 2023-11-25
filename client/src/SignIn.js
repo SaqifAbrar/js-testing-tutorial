@@ -13,36 +13,35 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
+
+		const rawResponse = await fetch("/auth/login", {
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+			body: JSON.stringify({
+				username: data.get("email"),
+				password: data.get("password"),
+			}),
+		});
+
+		const content = await rawResponse.json();
+
+		console.log(content);
+
+		/*console.log({
 			email: data.get("email"),
 			password: data.get("password"),
-		});
+		});*/
 	};
 
 	return (
@@ -52,6 +51,7 @@ export default function SignIn() {
 				<Box
 					sx={{
 						marginTop: 8,
+						marginBottom: 8,
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
@@ -77,7 +77,6 @@ export default function SignIn() {
 							label="Email Address"
 							name="email"
 							autoComplete="email"
-							autofocus
 						/>
 						<TextField
 							margin="normal"
@@ -115,7 +114,6 @@ export default function SignIn() {
 						</Grid>
 					</Box>
 				</Box>
-				<Copyright sx={{ mt: 8, mb: 4 }} />
 			</Container>
 		</ThemeProvider>
 	);
