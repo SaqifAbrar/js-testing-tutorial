@@ -18,7 +18,7 @@ import Tool1 from "./Tool1";
 import Tool2 from "./Tool2";
 import Tool3 from "./Tool3";
 
-const cards = ["tool 1", "tool 2", "tool 3"];
+const cards = ["Cypress.js", "Jest"];
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
