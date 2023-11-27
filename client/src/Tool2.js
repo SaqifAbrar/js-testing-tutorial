@@ -17,34 +17,36 @@ export default function Tool2() {
       			/>
 				<h2>Basics of Jest Testing</h2>
 				<p>
+				Some of the Basic jest Function Include:
+				</p>
 
-				Assertions in Jest are used to test the application’s state. They let you test that the function under test behaves as expected.
+				<ul>
+				<li><strong>describe:</strong> Creates a block that groups together several related tests.</li>
+				<li><strong>test:</strong> Used for writing individual tests.</li>
+				<li><strong>expect:</strong> Lets you access a number of “matchers” that let you validate different things.</li>
+				</ul> 
+				
+				
+				<p>
+
+				Applying these functions you can create tests to ensure proper functioning of an application
 				</p>
  				<p>Example of a simple assertion in Jest:</p>
 
 				<CodeBlock
-				text={`test('multiplication', () => {
-const result = 8 * 8;
-expect(result).toBe(64);
+				text={`test('Add 1 + 1', () => {
+const result = 1 + 1;
+expect(result).toBe(2);
 });`}
 				language="bash"
 				theme="duotoneLight"
       			/>
 
 				<p>
-				This test checks for the result of a simple multiplication operation, ensuring that it equals 64.
+				This test checks for the result of a simple addition operation, ensuring that it equals 2.
 				<p/>
 				<h2>Overview of different assertions</h2>
 
-				<p>
-				Jest provides functions to structure your tests:
-				</p>
-
-				<ul>
-				<li>describe: Creates a block that groups together several related tests.</li>
-				<li>test or it: Used for writing individual tests.</li>
-				<li>expect: Lets you access a number of “matchers” that let you validate different things.</li>
-				</ul> 
 				<p>
 				Here’s an overview of some common "matchers" in Jest:
 				</p>
