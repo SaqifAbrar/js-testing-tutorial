@@ -1,53 +1,25 @@
 const express = require("express");
 const validateLogin = require("./validateLoginRequest");
 const sqlite3 = require("sqlite3").verbose();
-
+const { db, searchUser, validatePassword, addUser } = require("./dbConfig");
 const app = express();
 
 const PORT = process.env.PORT || 8080;
-
-const db = new sqlite3.Database(
-	"./model/mock_data.db",
-	sqlite3.OPEN_READWRITE,
-	(err) => {
-		if (err) return console.error(err.message);
-
-		console.log("Data base connection successful...");
-	},
-);
 
 app.use(express.static("build"));
 
 app.use(express.json());
 
-async function searchUser(email) {
-	if (email === "") return -1;
+app.post("/auth/register", async (req, res) => {
+	const new_first_name = req.body.email;
+	const new_last_name = req.body.email;
+	const new_username = req.body.email;
+	const new_password = req.body.password;
 
-	const search_query = `SELECT id FROM mock_data WHERE email = '${email}'`;
-
-	return new Promise((resolve) =>
-		db.all(search_query, [], (err, rows) => {
-			if (err) resolve(err.message);
-
-			resolve(rows[0].id);
-		}),
-	);
-}
-
-async function validatePassword(id, request_password) {
-	if (id === "" || request_password === "") return -1;
-
-	const search_query = `SELECT password FROM mock_data WHERE id = ${id}`;
-
-	return new Promise((resolve) =>
-		db.all(search_query, [], (err, rows) => {
-			if (err) resolve(err.message);
-
-			const user_password = rows[0].password;
-			resolve(user_password == request_password);
-		}),
-	);
-}
+	if (searchUser(email, db) == -1) {
+		addUser(first_name, last_name, email, password, db);
+	}
+});
 
 app.post("/auth/login", async (req, res) => {
 	const username = req.body.email;
@@ -55,8 +27,8 @@ app.post("/auth/login", async (req, res) => {
 
 	let validate = false;
 	if (!validateLogin(username, password)) {
-		const userId = await searchUser(username);
-		validate = await validatePassword(userId, password);
+		const userId = await searchUser(username, db);
+		validate = await validatePassword(userId, password, db);
 	}
 
 	const response = {
