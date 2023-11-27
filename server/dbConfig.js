@@ -6,7 +6,7 @@ const db = new sqlite3.Database(
 	(err) => {
 		if (err) return console.error(err.message);
 
-		console.log("Data base connection successful...");
+		//console.log("Data base connection successful...");
 	},
 );
 
