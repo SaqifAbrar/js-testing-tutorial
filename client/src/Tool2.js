@@ -108,11 +108,76 @@ test('adds 1 + 2 to equal 3', async () => {
 				theme="duotoneLight"
       			/>
 				<p>This will run all test files with the .test.js extension</p>
-				<h2>Test & Tutorial Discussions</h2>
+				<h2>In Depth Test</h2>
 				<p>
-					Talk about the tests you made in greater detail. Talk about how the
-					test cases are structured, how the tools is used, and how effective
-					are they.
+					As an Example to Create test cases to ensure a specific function is working  I will walk through how to test the searchUser Function using the tools provided by jest.
+					<h3>Step 1: Begin the test suite</h3>
+				<CodeBlock
+				text={`const searchUser = require('./dbConfig.js');
+
+describe('searchUser', () => {`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+
+				<p>The first line imports the <strong>searchUser</strong> function from the dbConfig.js and the second uses the <strong>describe</strong> function to begin a test suite for the SearchUser function</p>
+
+					<h3>Step 2: Test Case Email is empty</h3>
+					<CodeBlock
+				text={`test('should return -1 when email is empty', async () => {
+	const result = await searchUser('', {});
+	expect(result).toBe(-1);
+});`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+
+				<p>This test case checks if searchUser returns -1 when the email is an empty string. The expect function is used to check if the actual result matches the expected result.</p>
+
+
+
+
+					<h3>Step 3: Test Case User is not found</h3>
+
+					<CodeBlock
+				text={`test('should return -1 when user is not found', async () => {
+					const db = {
+					  all: jest.fn((query, params, callback) => callback(null, [])),
+					};
+				  
+					const result = await searchUser('notfound@example.com', db);
+					expect(result).toBe(-1);
+				  });`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+
+				<p>This test case checks if searchUser returns -1 when the user is not found in the database. A mock database object is created with a jest.fn() function that simulates a scenario where the user is not found.</p>
+
+					<h3>Step 4: Test Case User is found</h3>
+					<CodeBlock
+				text={`test('should return user id when user is found', async () => {
+					const db = {
+					  all: jest.fn((query, params, callback) => callback(null, [{ id: 123 }])),
+					};
+				  
+					const result = await searchUser('found@example.com', db);
+					expect(result).toBe(123);
+				  });`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+
+				<p>This test case checks if searchUser returns the correct user id when the user is found in the database. A mock database object is created with a jest.fn() function that simulates a scenario where the user is found.</p>
+
+				<h3>Step 5: Run the Tests</h3>
+				<p> Run the Test suite with </p>
+				<CodeBlock
+				text={`npx jest`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+				<p> If the test suite passes that means that the searchUser function performs as expected. If it does not pass all the test the specific test failures can help determine what functionality is missing from the search User function</p>
 				</p>
 			</Container>
 		</Box>
