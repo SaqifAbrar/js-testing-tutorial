@@ -174,14 +174,6 @@ function SetUpDetailsUnit() {
 						in the <code>./client</code> directory
 					</AccordionDetails>
 				</Accordion>
-				<Accordion>
-					<AccordionSummary
-						expandIcon={<ExpandMoreIcon />}
-						aria-controls="panel1a-content"
-						id="panel1a-header"
-					></AccordionSummary>
-					<AccordionDetails></AccordionDetails>
-				</Accordion>
 			</Container>
 		</Box>
 	);
