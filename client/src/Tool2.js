@@ -7,7 +7,27 @@ export default function Tool2() {
 		<Box>
 			<Container>
 				<h1>Jest</h1>
+				<h2>Jest Overview</h2>
 				<p>Jest is a JavaScript Testing Framework with a focus on simplicity. It works with projects using various tools  and has all you ned to write comprehensive tests. </p>
+
+				<h2>Jest Evaluation</h2>
+				
+				<h3> Accuracy</h3>
+				<p> Jest scores highly in its accuracy at testing Javascript code. It provides clear and specific error messages when tests fail making it easier to identify issues. It alose supports snapshot testing to identify unexpected changes in code's behaviour</p>
+
+				<h3> Ease of Use</h3>
+				<p> Jest is an easy to use test platform. It works with minimal configuration for most Java script project and has command line support for running tests</p>
+
+				<h3> Reporting Facility</h3>
+				<p> provides detailed reports on tests reulsts on which tests failed and why those failures occured. It also has code coverage reports allowing you  to see which parts of your code are not covered by tests</p>
+
+				<h3> Automation and Integration</h3>
+				<p> Jest supports automated tests which can be run in parrallel for maximum performance. It has built in support for mocking. Jest is compatimblle with other prohject like Babel, TypeScript, Node, React, Angular and Vue </p>
+
+				<h3> Overall</h3>
+				<p> Jest is a comprehensive testing framework that excels in accuracy, ease of use, reporting, and automation. It is well-integrated, well-supported, and widely used in the JavaScript community.It should have the necesssary tools and geatures for you testing needs</p>
+
+
 				<h2>Installation Instructions</h2>
 				<p>To install Jest, use the following npm command:</p>
 				<CodeBlock
@@ -75,6 +95,14 @@ expect(a).toBeLessThan(b);   // Asserts that a is less than b`}
 				theme="duotoneLight"
       			/>
 
+	<h3>SnapShot Testing</h3>
+				
+				<CodeBlock
+				text={`expect(a).toMatchSnapshot();   // Asserts that a has not changed since the last time the test was run`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+
 				<h2>Testing Asynchronous Code</h2>
 				To test Asynchronous Code Simply put the async keyword in the testfunction  and make sure to await before calling the asynchronus function
 
@@ -110,7 +138,7 @@ test('adds 1 + 2 to equal 3', async () => {
 				<p>This will run all test files with the .test.js extension</p>
 				<h2>In Depth Test</h2>
 				<p>
-					As an Example to Create test cases to ensure a specific function is working  I will walk through how to test the searchUser Function using the tools provided by jest.
+					As an Example to Create test cases to ensure a specific function is working  I will walk through how to Unit test the searchUser Function using the tools provided by jest.
 					<h3>Step 1: Begin the test suite</h3>
 				<CodeBlock
 				text={`const searchUser = require('./dbConfig.js');
