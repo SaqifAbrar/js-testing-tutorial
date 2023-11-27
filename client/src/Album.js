@@ -40,6 +40,7 @@ function ProjectDetailsUnit() {
 					color="text.primary"
 					gutterBottom
 				>
+					<h2>Project Details</h2>
 					This website has various elements of interaction. You'll find that
 					there will be tests on the actual website itself. Below, you'll see a
 					3 cards for each JavaScript tool and a standard sign-in page commonly
@@ -53,7 +54,7 @@ function ProjectDetailsUnit() {
 					components of the frontend. It is compiled into a static servable
 					website through the node.js server.
 					<br />
-					<br />
+					<h3>The Frontend (Client)</h3>
 					The frontend. The React.js frontend (found in /client) consists of
 					App.js, Album.js and SignIn.js. App.js - Contains all the components
 					of this website. Album.js - Contains all the tutorial information and
@@ -61,12 +62,18 @@ function ProjectDetailsUnit() {
 					practical use case code for testing (note that Album.js is also used
 					for testing as well).
 					<br />
-					<br />
+					<h3>The Backend (Server)</h3>
 					The backend. The Node.js backend (found in /server) consists of
-					____.js, ___.js, ___.js. Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Labore magni itaque quae perferendis? Enim,
-					laboriosam officiis aperiam atque, non dicta vero quisquam qui impedit
-					labore eaque. Ratione aut adipisci sed.
+					./cypress, ./jest, ./model (database) and index.js. Note that SQLlite
+					is being used to store user information. There are several endpoints
+					in the backend and some validation functions that have great potential
+					to be tested!{" "}
+					<b>
+						<u>
+							In order to use the backend, you must use a local copy of this
+							project (found in the github repo).
+						</u>
+					</b>
 				</Typography>
 			</Container>
 		</Box>
