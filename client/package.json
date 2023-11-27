@@ -20,6 +20,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "rm -f -R ../server/build && react-scripts build && cp -R build ../server",
+		"deploy": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
