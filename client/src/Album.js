@@ -18,7 +18,7 @@ import Tool1 from "./Tool1";
 import Tool2 from "./Tool2";
 import Tool3 from "./Tool3";
 
-const cards = ["Cypress.js", "Jest"];
+const cards = ["Cypress.js", "Jest", "Comparison"];
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -29,18 +29,10 @@ function ProjectDetailsUnit() {
 			sx={{
 				bgcolor: "background.paper",
 				pt: 3,
-				pb: 6,
+				pb: 1,
 			}}
 		>
 			<Container maxWidth="sm">
-				<Button
-					href="https://github.com/SaqifAbrar/js-testing-tutorial"
-					target="_blank"
-					variant="outlined"
-					startIcon={<GitHubIcon />}
-				>
-					Project Repository
-				</Button>
 				<Typography
 					component="p"
 					variant="h7"
@@ -116,7 +108,7 @@ function SetUpDetailsUnit() {
 }
 
 function StartUnit() {
-	const [startMessage, setStartMessage] = useState("project");
+	const [startMessage, setStartMessage] = useState("");
 
 	return (
 		<Box
@@ -126,21 +118,37 @@ function StartUnit() {
 				pb: 6,
 			}}
 		>
-			<Container maxWidth="sm">
+			<Container maxWidth="md">
 				<Stack
-					sx={{ pt: 4 }}
+					sx={{ pt: 1 }}
 					direction="row"
-					spacing={2}
+					spacing={3}
 					justifyContent="center"
 				>
 					<Button
-						variant="contained"
+						variant={startMessage === "project" ? `contained` : `outlined`}
 						onClick={() => setStartMessage("project")}
 					>
 						Project Details
 					</Button>
-					<Button variant="outlined" onClick={() => setStartMessage("set-up")}>
+					<Button
+						variant={startMessage === "set-up" ? `contained` : `outlined`}
+						onClick={() => setStartMessage("set-up")}
+					>
 						Prerequisite Set-Up
+					</Button>
+					<Button
+						href="https://github.com/SaqifAbrar/js-testing-tutorial"
+						target="_blank"
+						variant="outlined"
+						startIcon={<GitHubIcon />}
+						style={{
+							backgroundColor: "black",
+							color: "white",
+						}}
+						hoverStyle={{ backgroundColor: "white", color: "black" }}
+					>
+						Project Repository
 					</Button>
 				</Stack>
 				<Container>
@@ -168,7 +176,7 @@ function HeroUnit() {
 					color="text.primary"
 					gutterBottom
 				>
-					AAAAA
+					JavaScript Testing Tools Module
 				</Typography>
 				<Typography
 					component="h4"
@@ -199,41 +207,44 @@ function HeroUnit() {
 
 function ToolCards({ setTool }) {
 	return (
-		<Container sx={{ py: 8 }} maxWidth="md">
-			{/* End hero unit */}
-			<Grid container spacing={4}>
-				{cards.map((card) => (
-					<Grid item key={card} xs={12} sm={6} md={4}>
-						<Card
-							sx={{
-								height: "100%",
-								display: "flex",
-								flexDirection: "column",
-							}}
-							onClick={() => setTool(card)}
-						>
-							<CardMedia
-								component="div"
+		<Box>
+			<Box></Box>
+			<Container sx={{ py: 1 }} maxWidth="md">
+				{/* End hero unit */}
+				<Grid container spacing={4}>
+					{cards.map((card) => (
+						<Grid item key={card} xs={12} sm={6} md={4}>
+							<Card
 								sx={{
-									// 16:9
-									pt: "56.25%",
+									height: "100%",
+									display: "flex",
+									flexDirection: "column",
 								}}
-								image="https://source.unsplash.com/random?wallpapers"
-							/>
-							<CardContent sx={{ flexGrow: 1 }}>
-								<Typography gutterBottom variant="h5" component="h2">
-									{`${card}`}
-								</Typography>
-								<Typography>Brief description of testing tool.</Typography>
-							</CardContent>
-							<CardActions>
-								<Button size="small">View</Button>
-							</CardActions>
-						</Card>
-					</Grid>
-				))}
-			</Grid>
-		</Container>
+								onClick={() => setTool(card)}
+							>
+								<CardMedia
+									component="div"
+									sx={{
+										// 16:9
+										pt: "56.25%",
+									}}
+									image="https://source.unsplash.com/random?wallpapers"
+								/>
+								<CardContent sx={{ flexGrow: 1 }}>
+									<Typography gutterBottom variant="h5" component="h2">
+										{`${card}`}
+									</Typography>
+									<Typography>Brief description of testing tool.</Typography>
+								</CardContent>
+								<CardActions>
+									<Button size="small">View</Button>
+								</CardActions>
+							</Card>
+						</Grid>
+					))}
+				</Grid>
+			</Container>
+		</Box>
 	);
 }
 
