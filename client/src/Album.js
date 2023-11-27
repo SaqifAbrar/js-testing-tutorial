@@ -140,7 +140,8 @@ function StartUnit() {
 					<Button
 						href="https://github.com/SaqifAbrar/js-testing-tutorial"
 						target="_blank"
-						variant="outlined"
+						variant="text"
+						sx={{ px: 3 }}
 						startIcon={<GitHubIcon />}
 						style={{
 							backgroundColor: "black",
