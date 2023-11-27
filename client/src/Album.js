@@ -26,11 +26,20 @@ const cards = [
 	{
 		name: "Cypress.js",
 		image: "https://www.cypress.io/cypress_logo_social.png",
+		description:
+			"Create tests for your modern web applications, debug them visually, and automatically run them in your continuous integration builds.",
 	},
-	{ name: "Jest", image: "https://jestjs.io/img/opengraph.png" },
+	{
+		name: "Jest",
+		image: "https://jestjs.io/img/opengraph.png",
+		description:
+			"Jest is a delightful JavaScript Testing Framework with a focus on simplicity.",
+	},
 	{
 		name: "Comparison",
 		image: "https://lesliespeas.com/wp-content/uploads/2022/10/compari.jpg",
+		description:
+			"See how the tools compare to each other! Give it a test yourself even and see which one's better for your project!",
 	},
 ];
 
@@ -285,7 +294,7 @@ function ToolCards({ setTool }) {
 			<Container sx={{ py: 1 }} maxWidth="md">
 				{/* End hero unit */}
 				<Grid container spacing={4}>
-					{cards.map(({ name, image }) => (
+					{cards.map(({ name, image, description }) => (
 						<Grid item key={name} xs={12} sm={6} md={4}>
 							<Card
 								sx={{
@@ -307,10 +316,10 @@ function ToolCards({ setTool }) {
 									<Typography gutterBottom variant="h5" component="h2">
 										{`${name}`}
 									</Typography>
-									<Typography>Brief description of testing tool.</Typography>
+									<Typography>{description}</Typography>
 								</CardContent>
 								<CardActions>
-									<Button size="small">View</Button>
+									<Button size="medium">View</Button>
 								</CardActions>
 							</Card>
 						</Grid>
@@ -328,7 +337,6 @@ export default function Album() {
 		<ThemeProvider theme={defaultTheme}>
 			<CssBaseline />
 			<main>
-				{/* Hero unit */}
 				<HeroUnit />
 				<StartUnit />
 				<ToolCards setTool={setTool} />
