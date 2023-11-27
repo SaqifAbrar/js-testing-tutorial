@@ -75,6 +75,30 @@ expect(a).toBeLessThan(b);   // Asserts that a is less than b`}
 				theme="duotoneLight"
       			/>
 
+				<h2>Testing Asynchronous Code</h2>
+				To test Asynchronous Code Simply put the async keyword in the testfunction  and make sure to await before calling the asynchronus function
+
+				<CodeBlock
+				text={`// Synchronus Test
+test('adds 1 + 2 to equal 3', () => {
+	expect(add(1, 2)).toBe(3);
+});
+				
+				
+				// Asynchronus Test
+test('adds 1 + 2 to equal 3', async () => {
+  const result = await asyncAdd(1, 2);
+  expect(result).toBe(3);
+});`}
+				language="bash"
+				theme="duotoneLight"
+      			/>
+
+
+
+
+
+
 				</p>
 				<h2>Running Tests</h2>
 				<p>To run your Jest tests, you run the following command</p>
