@@ -22,7 +22,17 @@ import Tool1 from "./Tool1";
 import Tool2 from "./Tool2";
 import Tool3 from "./Tool3";
 
-const cards = ["Cypress.js", "Jest", "Comparison"];
+const cards = [
+	{
+		name: "Cypress.js",
+		image: "https://www.cypress.io/cypress_logo_social.png",
+	},
+	{ name: "Jest", image: "https://jestjs.io/img/opengraph.png" },
+	{
+		name: "Comparison",
+		image: "https://lesliespeas.com/wp-content/uploads/2022/10/compari.jpg",
+	},
+];
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -283,15 +293,15 @@ function ToolCards({ setTool }) {
 			<Container sx={{ py: 1 }} maxWidth="md">
 				{/* End hero unit */}
 				<Grid container spacing={4}>
-					{cards.map((card) => (
-						<Grid item key={card} xs={12} sm={6} md={4}>
+					{cards.map(({ name, image }) => (
+						<Grid item key={name} xs={12} sm={6} md={4}>
 							<Card
 								sx={{
 									height: "100%",
 									display: "flex",
 									flexDirection: "column",
 								}}
-								onClick={() => setTool(card)}
+								onClick={() => setTool(name)}
 							>
 								<CardMedia
 									component="div"
@@ -299,11 +309,11 @@ function ToolCards({ setTool }) {
 										// 16:9
 										pt: "56.25%",
 									}}
-									image="https://source.unsplash.com/random?wallpapers"
+									image={image}
 								/>
 								<CardContent sx={{ flexGrow: 1 }}>
 									<Typography gutterBottom variant="h5" component="h2">
-										{`${card}`}
+										{`${name}`}
 									</Typography>
 									<Typography>Brief description of testing tool.</Typography>
 								</CardContent>
@@ -330,9 +340,9 @@ export default function Album() {
 				<HeroUnit />
 				<StartUnit />
 				<ToolCards setTool={setTool} />
-				{tool === cards[0] && <Tool1 />}
-				{tool === cards[1] && <Tool2 />}
-				{tool === cards[2] && <Tool3 />}
+				{tool === cards[0].name && <Tool1 />}
+				{tool === cards[1].name && <Tool2 />}
+				{tool === cards[2].name && <Tool3 />}
 			</main>
 		</ThemeProvider>
 	);
