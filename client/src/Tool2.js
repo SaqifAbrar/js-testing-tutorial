@@ -295,6 +295,29 @@ describe('searchUser', () => {`}
 
 					</AccordionDetails>
 				</Accordion>
+
+
+
+			<Accordion>
+				<AccordionSummary
+					expandIcon={<ExpandMoreIcon />}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
+				>
+					<h2>Jtest Demo</h2>
+				</AccordionSummary>
+				<AccordionDetails>
+					<>
+					<p>
+						recording of using Jtest
+					</p>
+					<video controls width="100%">
+						<source src="/videos/jtest_proper.mp4" type="video/mp4" />
+						Your browser does not support the video tag.
+					</video>
+					</>
+				</AccordionDetails>
+			</Accordion>
 			</Container>
 		</Box>
 	);
